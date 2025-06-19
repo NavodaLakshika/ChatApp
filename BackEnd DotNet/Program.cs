@@ -11,12 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSignalR();
 
-// Enable CORS for React frontend
+// Enable CORS for React frontend (adjust port if needed)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("reactApp", policy =>
     {
-        policy.WithOrigins("http://localhost:3001")
+        policy.WithOrigins("http://localhost:3000") // Your React app URL & port
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
@@ -24,8 +24,6 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddSingleton<SharedDb>();
-
-
 
 // Swagger for API documentation
 builder.Services.AddEndpointsApiExplorer();
@@ -35,7 +33,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "FormulaOne Chat Service API",
         Version = "v1",
-        Description = "This API includes a SignalR WebSocket endpoint at `/Chat` for real-time communication."
+        Description = "This API includes a SignalR WebSocket endpoint at `/chat` for real-time communication."
     });
 });
 
@@ -60,7 +58,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// ✅ SignalR WebSocket endpoint
-app.MapHub<ChatHub>("/Chat");
+// SignalR WebSocket endpoint (lowercase `/chat` to match frontend)
+app.MapHub<ChatHub>("/chat");
 
 app.Run();
