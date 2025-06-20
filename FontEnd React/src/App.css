@@ -1,0 +1,316 @@
+:root {
+  --primary-color: #4361ee;
+  --primary-light: #4895ef;
+  --secondary-color: #3f37c9;
+  --accent-color: #4cc9f0;
+  --dark-color: #1a1a2e;
+  --light-color: #f8f9fa;
+  --success-color: #4ade80;
+  --warning-color: #fbbf24;
+  --error-color: #f87171;
+  --text-color: #2b2d42;
+  --text-light: #8d99ae;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f7fa;
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  padding: 1rem;
+}
+
+.app-container.connected {
+  background: #f5f7fa;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem 1rem 0;
+}
+
+.app-title {
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, #4361ee, #3f37c9, #4cc9f0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.animate-charcter {
+  background-image: linear-gradient(-225deg, #4361ee 0%, #4895ef 29%, #4cc9f0 67%, #3f37c9 100%);
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 3s linear infinite;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.app-subtitle {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.message-animation {
+  animation: fadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Status dots */
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.status-sending {
+  background-color: var(--warning-color);
+  animation: pulse 1.5s infinite;
+}
+
+.status-sent {
+  background-color: var(--success-color);
+}
+
+.status-failed {
+  background-color: var(--error-color);
+}
+
+/* Spinner */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Floating */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Messages */
+.message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 0.5rem;
+}
+
+.message {
+  display: flex;
+  gap: 1rem;
+  background: #ffffff;
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  box-shadow: var(--box-shadow);
+  max-width: 80%;
+  transition: var(--transition);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.3s ease-out;
+  word-wrap: break-word;
+}
+
+.message:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.own-message {
+  align-self: flex-end;
+  background: linear-gradient(to right, var(--primary-light), var(--primary-color));
+  color: white;
+  border: none;
+}
+
+.system-message {
+  align-self: center;
+  background: #f8f9fa;
+  text-align: center;
+  max-width: 100%;
+  border: 1px dashed #dee2e6;
+}
+
+.welcome-message {
+  background: linear-gradient(to right, #f0f9ff, #e0f2fe);
+  border: 1px solid #bae6fd;
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.own-message .user-avatar {
+  background: white;
+  color: var(--primary-color);
+}
+
+.message-content-wrapper {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.message-username {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.own-message .message-username {
+  color: white;
+}
+
+.message-time {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  opacity: 0.8;
+}
+
+.own-message .message-time {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.message-content {
+  word-break: break-word;
+  line-height: 1.5;
+}
+
+/* Mobile Enhancements */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 1.8rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .message {
+    max-width: 95%;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .message-container {
+    padding: 0.5rem;
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+
+  .message-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .message-time {
+    margin-top: 4px;
+  }
+}
